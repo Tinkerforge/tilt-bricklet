@@ -33,6 +33,21 @@ void invocation(const ComType com, const uint8_t *data) {
 			return;
 		}
 
+		case FID_ENABLE_TILT_STATE_CALLBACK: {
+			enable_tilt_state_callback(com, (EnableTiltStateCallback*)data);
+			return;
+		}
+
+		case FID_DISABLE_TILT_STATE_CALLBACK: {
+			disable_tilt_state_callback(com, (DisableTiltStateCallback*)data);
+			return;
+		}
+
+		case FID_IS_TILT_STATE_CALLBACK_ENABLED: {
+			is_tilt_state_callback_enabled(com, (IsTiltStateCallbackEnabled*)data);
+			return;
+		}
+
 		default: {
 			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_NOT_SUPPORTED, com);
 			break;
@@ -49,12 +64,36 @@ void get_tilt_state(const ComType com, const GetTiltState *data) {
 	BA->send_blocking_with_timeout(&gtsr, sizeof(GetTiltStateReturn), com);
 }
 
+void enable_tilt_state_callback(const ComType com, const EnableTiltStateCallback *data) {
+	BC->callback_enabled = true;
+	BA->com_return_setter(com, data);
+}
+
+void disable_tilt_state_callback(const ComType com, const DisableTiltStateCallback *data) {
+	BC->callback_enabled = false;
+	BA->com_return_setter(com, data);
+}
+
+void is_tilt_state_callback_enabled(const ComType com, const IsTiltStateCallbackEnabled *data) {
+	IsTiltStateCallbackEnabledReturn itscer;
+	itscer.header        = data->header;
+	itscer.header.length = sizeof(IsTiltStateCallbackEnabledReturn);
+	itscer.enabled       = BC->callback_enabled;
+
+	BA->send_blocking_with_timeout(&itscer, sizeof(IsTiltStateCallbackEnabledReturn), com);
+}
+
 void constructor(void) {
 	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
 
 	PIN_TILT.type = PIO_INPUT;
 	PIN_TILT.attribute = PIO_PULLUP;
     BA->PIO_Configure(&PIN_TILT, 1);
+
+    BC->count_open = 0;
+    BC->callback_enabled = false;
+    BC->state = TILT_STATE_CLOSED;
+    BC->debounce = TILT_DEBOUNCE_TIME;
 }
 
 void destructor(void) {
@@ -63,20 +102,24 @@ void destructor(void) {
 void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
 		if(BC->debounce == 0) {
-			if(PIN_TILT.pio->PIO_PDSR & PIN_TILT.mask) {
-				if(BC->state != TILT_STATE_CLOSED) {
-					BC->state = TILT_STATE_CLOSED;
-					BC->debounce = TILT_DEBOUNCE_TIME;
-					BC->state_changed = true;
-				}
-			} else {
-				if(BC->state != TILT_STATE_OPEN) {
-					BC->state = TILT_STATE_OPEN;
-					BC->debounce = TILT_DEBOUNCE_TIME;
+			uint8_t new_state = TILT_STATE_CLOSED_VIBRATING;
+			if(BC->count_open >= TILT_DEBOUNCE_TIME - TILT_DEBOUNCE_TIME/50) { // 2% bounce or less is ignored
+				new_state = TILT_STATE_OPEN;
+			} else if(BC->count_open <= TILT_DEBOUNCE_TIME/50) { // 2% bounce or less is ignored
+				new_state = TILT_STATE_CLOSED;
+			}
+			if(BC->state != new_state) {
+				BC->state = new_state;
+				if(BC->callback_enabled) {
 					BC->state_changed = true;
 				}
 			}
+			BC->count_open = 0;
+			BC->debounce = TILT_DEBOUNCE_TIME;
 		} else {
+			if(PIN_TILT.pio->PIO_PDSR & PIN_TILT.mask) {
+				BC->count_open++;
+			}
 			BC->debounce--;
 		}
 	}
@@ -90,11 +133,11 @@ void tick(const uint8_t tick_type) {
 }
 
 void send_state_changed_callback(void) {
-	TiltStateChanged tsc;
-	BA->com_make_default_header(&tsc, BS->uid, sizeof(TiltStateChanged), FID_TILT_STATE_CHANGED);
-	tsc.state = BC->state;
+	TiltState ts;
+	BA->com_make_default_header(&ts, BS->uid, sizeof(TiltState), FID_TILT_STATE);
+	ts.state = BC->state;
 
-	BA->send_blocking_with_timeout(&tsc,
-								   sizeof(TiltStateChanged),
+	BA->send_blocking_with_timeout(&ts,
+								   sizeof(TiltState),
 								   *BA->com_current);
 }

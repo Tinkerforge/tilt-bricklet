@@ -48,8 +48,8 @@ typedef struct {
 	uint8_t state;
 	bool state_changed;
 	uint8_t debounce;
-
-	uint32_t tick;
+	bool callback_enabled;
+	uint8_t count_open;
 } BrickContext;
 
 #endif

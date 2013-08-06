@@ -25,12 +25,16 @@
 #include <stdint.h>
 #include "bricklib/com/com_common.h"
 
-#define TILT_STATE_CLOSED  0
-#define TILT_STATE_OPEN    1
-#define TILT_DEBOUNCE_TIME 200 // in ms
+#define TILT_STATE_CLOSED            0
+#define TILT_STATE_OPEN              1
+#define TILT_STATE_CLOSED_VIBRATING  2
+#define TILT_DEBOUNCE_TIME 100 // in ms
 
 #define FID_GET_TILT_STATE 1
-#define FID_TILT_STATE_CHANGED 2
+#define FID_ENABLE_TILT_STATE_CALLBACK 2
+#define FID_DISABLE_TILT_STATE_CALLBACK 3
+#define FID_IS_TILT_STATE_CALLBACK_ENABLED 4
+#define FID_TILT_STATE 5
 
 typedef struct {
 	MessageHeader header;
@@ -47,10 +51,30 @@ typedef struct {
 
 typedef struct {
 	MessageHeader header;
+} __attribute__((__packed__)) EnableTiltStateCallback;
+
+typedef struct {
+	MessageHeader header;
+} __attribute__((__packed__)) DisableTiltStateCallback;
+
+typedef struct {
+	MessageHeader header;
+} __attribute__((__packed__)) IsTiltStateCallbackEnabled;
+
+typedef struct {
+	MessageHeader header;
+	bool enabled;
+} __attribute__((__packed__)) IsTiltStateCallbackEnabledReturn;
+
+typedef struct {
+	MessageHeader header;
 	uint8_t state;
-} __attribute__((__packed__)) TiltStateChanged;
+} __attribute__((__packed__)) TiltState;
 
 void get_tilt_state(const ComType com, const GetTiltState *data);
+void enable_tilt_state_callback(const ComType com, const EnableTiltStateCallback *data);
+void disable_tilt_state_callback(const ComType com, const DisableTiltStateCallback *data);
+void is_tilt_state_callback_enabled(const ComType com, const IsTiltStateCallbackEnabled *data);
 
 void send_state_changed_callback(void);
 
