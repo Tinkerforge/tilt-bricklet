@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    al: TBrickletTilt;
+    tilt: TBrickletTilt;
   public
     procedure TiltStateCB(sender: TBrickletTilt; const tiltState: byte);
     procedure Execute;
@@ -49,17 +49,17 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  al := TBrickletTilt.Create(UID, ipcon);
+  tilt := TBrickletTilt.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Enable tilt state callack }
-  al.EnableTiltStateCallback();
+  tilt.EnableTiltStateCallback();
 
   { Register tilt state callback to procedure TiltStateCB }
-  al.OnTiltState := {$ifdef FPC}@{$endif}TiltStateCB;
+  tilt.OnTiltState := {$ifdef FPC}@{$endif}TiltStateCB;
 
   WriteLn('Press key to exit');
   ReadLn;

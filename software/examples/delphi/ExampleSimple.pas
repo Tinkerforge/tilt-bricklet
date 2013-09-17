@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    al: TBrickletTilt;
+    tilt: TBrickletTilt;
   public
     procedure Execute;
   end;
@@ -30,14 +30,14 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  al := TBrickletTilt.Create(UID, ipcon);
+  tilt := TBrickletTilt.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Get current tilt state }
-  tiltState := al.GetTiltState;
+  tiltState := tilt.GetTiltState;
 
   case tiltState of
     BRICKLET_TILT_TILT_STATE_CLOSED:
