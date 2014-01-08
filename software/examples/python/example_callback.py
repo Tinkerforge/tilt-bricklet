@@ -11,11 +11,11 @@ from tinkerforge.bricklet_tilt import Tilt
 # Callback function for tilt state callback
 def cb_tilt_state(tilt_state):
     if tilt_state == Tilt.TILT_STATE_CLOSED:
-        print 'closed'
+        print('closed')
     elif tilt_state == Tilt.TILT_STATE_OPEN:
-        print 'open'
+        print('open')
     elif tilt_state == Tilt.TILT_STATE_CLOSED_VIBRATING:
-        print 'closed vibrating'
+        print('closed vibrating')
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection

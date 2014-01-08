@@ -19,11 +19,11 @@ if __name__ == "__main__":
     tilt_state = tilt.get_tilt_state()
 
     if tilt_state == Tilt.TILT_STATE_CLOSED:
-        print 'closed'
+        print('closed')
     elif tilt_state == Tilt.TILT_STATE_OPEN:
-        print 'open'
+        print('open')
     elif tilt_state == Tilt.TILT_STATE_CLOSED_VIBRATING:
-        print 'closed vibrating'
+        print('closed vibrating')
 
     raw_input('Press key to exit\n') # Use input() in Python 3
     ipcon.disconnect()
