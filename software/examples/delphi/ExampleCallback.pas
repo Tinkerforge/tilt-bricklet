@@ -56,7 +56,7 @@ begin
   { Don't use device before ipcon is connected }
 
   { Enable tilt state callack }
-  tilt.EnableTiltStateCallback();
+  tilt.EnableTiltStateCallback;
 
   { Register tilt state callback to procedure TiltStateCB }
   tilt.OnTiltState := {$ifdef FPC}@{$endif}TiltStateCB;
