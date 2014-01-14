@@ -5,7 +5,6 @@ use Tinkerforge::BrickletTilt;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'gfdd'; # Change to your UID
 use constant UID => 'fgfds'; # Change to your UID
 
 my $ipcon = IPConnection->new(); # Create IP connection
