@@ -7,8 +7,8 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'fgfds'; # Change to your UID
 
-my $ipcon = IPConnection->new(); # Create IP connection
-my $tilt = BrickletTilt->new(&UID, $ipcon); # Create device object
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $tilt = Tinkerforge::BrickletTilt->new(&UID, $ipcon); # Create device object
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
@@ -16,15 +16,15 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Get current tilt state
 my $tilt_state = $tilt->get_tilt_state();
 
-if (tilt_state == $tilt->TILT_STATE_CLOSED)
+if ($tilt_state == $tilt->TILT_STATE_CLOSED)
 {
     print "\nclosed\n";
 }
-if ($tilt_state == $tilt->TILT_STATE_OPEN)
+elsif ($tilt_state == $tilt->TILT_STATE_OPEN)
 {
     print "\nopen\n";
 }
-if ($tilt_state == $tilt->TILT_STATE_CLOSED_VIBRATING)
+elsif ($tilt_state == $tilt->TILT_STATE_CLOSED_VIBRATING)
 {
     print "\nclosed vibrating\n";
 }
