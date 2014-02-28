@@ -2,18 +2,18 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'fgfds';//Change to your UID
+var UID = 'fgfds'; // Change to your UID
 
-var ipcon = new Tinkerforge.IPConnection();// Create IP connection
-var tilt = new Tinkerforge.BrickletTilt(UID, ipcon);// Create device object
+var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
+var tilt = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
     function(error) {
-        console.log('Error: '+error);        
+        console.log('Error: '+error);
     }
-);// Connect to brickd
+); // Connect to brickd
+// Don't use device before ipcon is connected
 
-//Don't use device before ipcon is connected
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
         // Get current tilt state
@@ -21,7 +21,7 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
             function(tiltState) {
                 if(tiltState === Tinkerforge.BrickletTilt.TILT_STATE_CLOSED) {
                     console.log('Closed');
-                } 
+                }
                 if(tiltState === Tinkerforge.BrickletTilt.TILT_STATE_OPEN) {
                     console.log('Open');
                 }
@@ -43,4 +43,3 @@ process.stdin.on('data',
         process.exit(0);
     }
 );
-
