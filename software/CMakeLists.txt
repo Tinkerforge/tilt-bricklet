@@ -1,6 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 
-SET(PROJECT_NAME tilt-bricklet)
+SET(PROJECT_NAME heart-rate-bricklet)
 SET(CHIP sam3s4)
 SET(BOARD sam3s-ek)
 SET(MCU cortex-m3\ -mthumb)
@@ -8,7 +8,7 @@ PROJECT(${PROJECT_NAME})
 
 # Optimization level, can be [0, 1, 2, 3, s]. 
 # 0 = turn off optimization. s = optimize for size.
-SET(OPTIMIZATION_LEVEL 3)
+SET(OPTIMIZATION_LEVEL 2)
 SET(DEBUG "")
 
 SET(CMAKE_BUILD_TYPE None)
@@ -29,7 +29,7 @@ SET_TARGET_PROPERTIES(${PROJECT_NAME}.elf PROPERTIES LINKER_LANGUAGE C)
 
 # define compile flags 
 SET_TARGET_PROPERTIES(${PROJECT_NAME}.elf PROPERTIES COMPILE_FLAGS
-	"${DEBUG} -mcpu=${MCU} -std=gnu99 -Wall -mlong-calls -ffunction-sections -O${OPTIMIZATION_LEVEL} -fPIE -pie"
+	"${DEBUG} -mcpu=${MCU} -std=gnu99  -Wall -mlong-calls -ffunction-sections -O${OPTIMIZATION_LEVEL} -fPIE -pie"
 )
 
 #define linker flags 
