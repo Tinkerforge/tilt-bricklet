@@ -24,4 +24,4 @@
 
 #include "brickletlib/bricklet_entry.c"
 #include "brickletlib/bricklet_simple.c"
-#include "heart-rate.c"
+#include "tilt.c"
