@@ -33,11 +33,11 @@ begin
       WriteLn('closed');
     end;
     BRICKLET_TILT_TILT_STATE_OPEN:
-	begin
+    begin
       WriteLn('open');
     end;
     BRICKLET_TILT_TILT_STATE_CLOSED_VIBRATING:
-	begin
+    begin
       WriteLn('closed vibrating');
     end;
   end;

@@ -44,14 +44,16 @@
                         // Get current tilt state
                         tilt.getTiltState(
                             function(tiltState) {
-                                if(tiltState === Tinkerforge.BrickletTilt.TILT_STATE_CLOSED) {
-                                    textArea.value += 'Closed\n';
-                                }
-                                if(tiltState === Tinkerforge.BrickletTilt.TILT_STATE_OPEN) {
-                                    textArea.value += 'Open\n';
-                                }
-                                if(tiltState === Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING) {
-                                    textArea.value += 'Close Vibrating\n';
+                                switch(tiltState) {
+                                case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
+                                    textArea.value += 'Closed';
+                                    break;
+                                case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
+                                    textArea.value += 'Open';
+                                    break;
+                                case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+                                    textArea.value += 'Closed vibrating';
+                                    break;
                                 }
                             },
                             function(error) {

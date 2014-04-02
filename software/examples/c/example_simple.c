@@ -32,9 +32,9 @@ int main() {
 	}
 
 	switch(tilt_state) {
-		case TILT_TILT_STATE_CLOSED: printf("closed\n"); break;
-		case TILT_TILT_STATE_OPEN: printf("open\n"); break;
-		case TILT_TILT_STATE_CLOSED_VIBRATING: printf("closed vibrating\n"); break;
+	case TILT_TILT_STATE_CLOSED:           printf("closed\n"); break;
+	case TILT_TILT_STATE_OPEN:             printf("open\n"); break;
+	case TILT_TILT_STATE_CLOSED_VIBRATING: printf("closed vibrating\n"); break;
 	}
 
 	printf("Press key to exit\n");
