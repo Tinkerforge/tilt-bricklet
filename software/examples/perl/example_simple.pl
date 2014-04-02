@@ -18,18 +18,18 @@ my $tilt_state = $tilt->get_tilt_state();
 
 if ($tilt_state == $tilt->TILT_STATE_CLOSED)
 {
-    print "\nclosed\n";
+    print "closed\n";
 }
 elsif ($tilt_state == $tilt->TILT_STATE_OPEN)
 {
-    print "\nopen\n";
+    print "open\n";
 }
 elsif ($tilt_state == $tilt->TILT_STATE_CLOSED_VIBRATING)
 {
-    print "\nclosed vibrating\n";
+    print "closed vibrating\n";
 }
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

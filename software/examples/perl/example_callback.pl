@@ -17,17 +17,15 @@ sub cb_tilt_state
 
     if ($tilt_state == $tilt->TILT_STATE_CLOSED)
     {
-        print "\nclosed\n";
+        print "closed\n";
     }
-
-    if ($tilt_state == $tilt->TILT_STATE_OPEN)
+    elsif ($tilt_state == $tilt->TILT_STATE_OPEN)
     {
-        print "\nopen\n";
+        print "open\n";
     }
-
-    if ($tilt_state == $tilt->TILT_STATE_CLOSED_VIBRATING)
+    elsif ($tilt_state == $tilt->TILT_STATE_CLOSED_VIBRATING)
     {
-        print "\nclosed vibrating\n";
+        print "closed vibrating\n";
     }
 }
 
@@ -40,7 +38,7 @@ $tilt->enable_tilt_state_callback();
 # Register tilt state callback to function cb_tilt_state
 $tilt->register_callback($tilt->CALLBACK_TILT_STATE, 'cb_tilt_state');
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
