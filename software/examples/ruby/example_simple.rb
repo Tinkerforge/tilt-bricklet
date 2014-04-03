@@ -20,12 +20,12 @@ ipcon.connect HOST, PORT # Connect to brickd
 tilt_state = tilt.get_tilt_state
 
 case tilt_state
-	when BrickletTilt::TILT_STATE_CLOSED 
-		puts 'closed'
-	when BrickletTilt::TILT_STATE_OPEN
-		puts 'open'
-	when BrickletTilt::TILT_STATE_CLOSED_VIBRATING
-		puts "closed vibrating"
+  when BrickletTilt::TILT_STATE_CLOSED 
+    puts 'closed'
+  when BrickletTilt::TILT_STATE_OPEN
+    puts 'open'
+  when BrickletTilt::TILT_STATE_CLOSED_VIBRATING
+    puts 'closed vibrating'
 end
 
 puts 'Press key to exit'

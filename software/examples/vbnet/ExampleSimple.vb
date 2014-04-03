@@ -15,14 +15,14 @@ Module ExampleSimple
         ' Get current tilt state
         Dim tiltState As Byte = tilt.GetTiltState()
 
-		Select Case tiltState
-			Case BrickletTilt.TILT_STATE_CLOSED
-        		System.Console.WriteLine("closed")
-			Case BrickletTilt.TILT_STATE_OPEN
-        		System.Console.WriteLine("open")
-			Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
-        		System.Console.WriteLine("closed vibrating")
-		End Select
+        Select Case tiltState
+            Case BrickletTilt.TILT_STATE_CLOSED
+                System.Console.WriteLine("closed")
+            Case BrickletTilt.TILT_STATE_OPEN
+                System.Console.WriteLine("open")
+            Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
+                System.Console.WriteLine("closed vibrating")
+        End Select
 
         System.Console.WriteLine("Press key to exit")
         System.Console.ReadKey()

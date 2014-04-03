@@ -7,14 +7,14 @@ Module ExampleCallback
 
     ' Callback function for tilt state callback
     Sub TiltStateCB(ByVal sender As BrickletTilt, ByVal tiltState As Byte)
-		Select Case tiltState
-			Case BrickletTilt.TILT_STATE_CLOSED
-        		System.Console.WriteLine("closed")
-			Case BrickletTilt.TILT_STATE_OPEN
-        		System.Console.WriteLine("open")
-			Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
-        		System.Console.WriteLine("closed vibrating")
-		End Select
+        Select Case tiltState
+            Case BrickletTilt.TILT_STATE_CLOSED
+                System.Console.WriteLine("closed")
+            Case BrickletTilt.TILT_STATE_OPEN
+                System.Console.WriteLine("open")
+            Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
+                System.Console.WriteLine("closed vibrating")
+        End Select
     End Sub
 
     Sub Main()
