@@ -5,7 +5,7 @@ function matlab_example_callback
     HOST = 'localhost';
     PORT = 4223;
     UID = 'fgfds'; % Change to your UID
-    
+
     ipcon = IPConnection(); % Create IP connection
     tilt = BrickletTilt(UID, ipcon); % Create device object
 
@@ -13,18 +13,16 @@ function matlab_example_callback
     % Don't use device before ipcon is connected
 
     % Get current tilt state
-    tilt_state = tilt.getTiltState();
-    
-    if tilt_state == tilt.TILT_STATE_CLOSED
+    state = tilt.getTiltState();
+
+    if state == tilt.TILT_STATE_CLOSED
         fprintf('closed');
-    elseif tilt_state == tilt.TILT_STATE_OPEN
+    elseif state == tilt.TILT_STATE_OPEN
         fprintf('open');
-    elseif tilt_state == tilt.TILT_STATE_CLOSED_VIBRATING
+    elseif state == tilt.TILT_STATE_CLOSED_VIBRATING
         fprintf('closed vibrating');
     end
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
-
-

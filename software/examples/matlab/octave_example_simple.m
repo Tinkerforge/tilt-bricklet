@@ -11,16 +11,16 @@ function octave_example_simple
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    tilt_state = tilt.getTiltState();
+    state = tilt.getTiltState();
     
-    if str2double(tilt_state.toString) == 0
+    if str2double(state.toString()) == 0
         fprintf("Closed\n");
-    elseif str2double(tilt_state.toString) == 1
+    elseif str2double(state.toString()) == 1
         fprintf("Open\n");
-    elseif str2double(tilt_state.toString) == 2
+    elseif str2double(state.toString()) == 2
         fprintf("Closed Vibrating\n");
     end
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end

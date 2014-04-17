@@ -16,19 +16,19 @@ function matlab_example_callback
     tilt.enableTiltStateCallback();
 
     % Register tilt state callback to function cb_tilt_state
-    set(tilt, 'TiltStateCallback', @(h, e)cb_tilt_state(e));
+    set(tilt, 'TiltStateCallback', @(h, e) cb_tilt_state(e));
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
 
 % Callback function for tilt state callback
-function cb_tilt_state(tilt_state)
-    if tilt_state.state == com.tinkerforge.BrickletTilt.TILT_STATE_CLOSED
+function cb_tilt_state(e)
+    if e.state == com.tinkerforge.BrickletTilt.TILT_STATE_CLOSED
         fprintf('Closed\n');
-    elseif tilt_state.state == com.tinkerforge.BrickletTilt.TILT_STATE_OPEN
+    elseif e.state == com.tinkerforge.BrickletTilt.TILT_STATE_OPEN
         fprintf('Open\n');
-    elseif tilt_state.state == com.tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING
+    elseif e.state == com.tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING
         fprintf('Closed Vibrating\n');
     end
 end

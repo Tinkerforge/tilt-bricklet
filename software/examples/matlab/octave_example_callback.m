@@ -15,19 +15,19 @@ function octave_example_callback
     tilt.enableTiltStateCallback();
 
     % Register tilt state callback to function cb_tilt_state
-    tilt.addTiltStateListener("cb_tilt_state");
+    tilt.addTiltStateCallback(@cb_tilt_state);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback function for tilt state callback
-function cb_tilt_state(tilt_state)
-    if str2double(tilt_state.toString) == 0
+function cb_tilt_state(e)
+    if str2double(e.state.toString()) == 0
         fprintf("Closed\n");
-    elseif str2double(tilt_state.toString) == 1
+    elseif str2double(e.state.toString()) == 1
         fprintf("Open\n");
-    elseif str2double(tilt_state.toString) == 2
+    elseif str2double(e.state.toString()) == 2
         fprintf("Closed Vibrating\n");
     end
 end
