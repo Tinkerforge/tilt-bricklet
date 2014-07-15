@@ -24,7 +24,7 @@ public class ExampleSimple {
 			case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.out.println("closed vibrating"); break;
 		}
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();
 	}
 }
