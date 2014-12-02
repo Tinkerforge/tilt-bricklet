@@ -24,8 +24,8 @@ class Example
     		case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.Console.WriteLine("closed vibrating"); break;
 		}
 
-		System.Console.WriteLine("Press key to exit");
-		System.Console.ReadKey();
+		System.Console.WriteLine("Press enter to exit");
+		System.Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }
