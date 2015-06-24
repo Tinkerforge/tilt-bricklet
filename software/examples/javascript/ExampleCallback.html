@@ -50,16 +50,15 @@
                     function(tiltState) {
                         switch(tiltState) {
                         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
-                            textArea.value += 'Closed';
+                            textArea.value += 'Closed\n';
                             break;
                         case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
-                            textArea.value += 'Open';
+                            textArea.value += 'Open\n';
                             break;
                         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
-                            textArea.value += 'Closed vibrating';
+                            textArea.value += 'Closed vibrating\n';
                             break;
                         }
-                        textArea.value += '\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
