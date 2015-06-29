@@ -16,11 +16,11 @@ function matlab_example_callback()
     state = tilt.getTiltState();
 
     if state == tilt.TILT_STATE_CLOSED
-        fprintf('closed');
+        fprintf('Closed\n');
     elseif state == tilt.TILT_STATE_OPEN
-        fprintf('open');
+        fprintf('Open\n');
     elseif state == tilt.TILT_STATE_CLOSED_VIBRATING
-        fprintf('closed vibrating');
+        fprintf('Closed vibrating\n');
     end
 
     input('Press any key to exit...\n', 's');

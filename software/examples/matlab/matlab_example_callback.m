@@ -5,7 +5,7 @@ function matlab_example_callback()
     HOST = 'localhost';
     PORT = 4223;
     UID = 'fgfds'; % Change to your UID
-    
+
     ipcon = IPConnection(); % Create IP connection
     tilt = BrickletTilt(UID, ipcon); % Create device object
 
