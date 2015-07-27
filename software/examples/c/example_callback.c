@@ -24,8 +24,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Tilt tilt;
-	tilt_create(&tilt, UID, &ipcon); 
+	Tilt t;
+	tilt_create(&t, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -35,10 +35,10 @@ int main() {
 	// Don't use device before ipcon is connected
 
 	// Enable tilt state callback
-	tilt_enable_tilt_state_callback(&tilt);
+	tilt_enable_tilt_state_callback(&t);
 
 	// Register tilt_state callback to function cb_tilt_state
-	tilt_register_callback(&tilt,
+	tilt_register_callback(&t,
 	                       TILT_CALLBACK_TILT_STATE,
 	                       (void *)cb_tilt_state,
 	                       NULL);

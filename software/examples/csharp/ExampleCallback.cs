@@ -11,25 +11,25 @@ class Example
 	{
 		switch(tiltState)
 		{
-    		case BrickletTilt.TILT_STATE_CLOSED: System.Console.WriteLine("closed"); break;
-    		case BrickletTilt.TILT_STATE_OPEN: System.Console.WriteLine("open"); break;
-    		case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.Console.WriteLine("closed vibrating"); break;
+			case BrickletTilt.TILT_STATE_CLOSED: System.Console.WriteLine("closed"); break;
+			case BrickletTilt.TILT_STATE_OPEN: System.Console.WriteLine("open"); break;
+			case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.Console.WriteLine("closed vibrating"); break;
 		}
 	}
 
-	static void Main() 
+	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletTilt tilt = new BrickletTilt(UID, ipcon); // Create device object
+		BrickletTilt t = new BrickletTilt(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
 		// Enable tilt state callback
-		tilt.EnableTiltStateCallback();
+		t.EnableTiltStateCallback();
 
 		// Register tiltState callback to function TiltStateCB
-		tilt.TiltState += TiltStateCB;
+		t.TiltState += TiltStateCB;
 
 		System.Console.WriteLine("Press enter to exit");
 		System.Console.ReadLine();

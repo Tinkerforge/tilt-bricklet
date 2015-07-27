@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 
 HOST = "localhost"
 PORT = 4223
@@ -19,16 +19,16 @@ def cb_tilt_state(tilt_state):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    tilt = Tilt(UID, ipcon) # Create device object
+    t = Tilt(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
     # Enable tilt state callback
-    tilt.enable_tilt_state_callback()
+    t.enable_tilt_state_callback()
 
     # Register tilt state callback to function cb_tilt_state
-    tilt.register_callback(tilt.CALLBACK_TILT_STATE, cb_tilt_state)
+    t.register_callback(t.CALLBACK_TILT_STATE, cb_tilt_state)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
     ipcon.disconnect()

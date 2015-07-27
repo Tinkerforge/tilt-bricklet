@@ -11,13 +11,13 @@ PORT = 4223
 UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
-tilt = BrickletTilt.new UID, ipcon # Create device object
+t = BrickletTilt.new UID, ipcon # Create device object
 
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current tilt state
-tilt_state = tilt.get_tilt_state
+tilt_state = t.get_tilt_state
 
 case tilt_state
   when BrickletTilt::TILT_STATE_CLOSED 

@@ -13,8 +13,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Tilt tilt;
-	tilt_create(&tilt, UID, &ipcon); 
+	Tilt t;
+	tilt_create(&t, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -25,7 +25,7 @@ int main() {
 
 	// Get current tilt state
 	uint8_t tilt_state;
-	if(tilt_get_tilt_state(&tilt, &tilt_state) < 0) {
+	if(tilt_get_tilt_state(&t, &tilt_state) < 0) {
 		fprintf(stderr, "Could not get value, probably timeout\n");
 		exit(1);
 	}
