@@ -36,7 +36,7 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get current t state }
+  { Get current tilt state }
   tiltState := t.GetTiltState;
 
   case tiltState of
