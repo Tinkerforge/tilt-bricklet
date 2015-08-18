@@ -7,13 +7,13 @@ Module ExampleSimple
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim tilt As New BrickletTilt(UID, ipcon) ' Create device object
+        Dim t As New BrickletTilt(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
         ' Get current tilt state
-        Dim tiltState As Byte = tilt.GetTiltState()
+        Dim tiltState As Byte = t.GetTiltState()
 
         Select Case tiltState
             Case BrickletTilt.TILT_STATE_CLOSED

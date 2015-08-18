@@ -19,15 +19,16 @@ Module ExampleCallback
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim tilt As New BrickletTilt(UID, ipcon) ' Create device object
+        Dim t As New BrickletTilt(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
+        ' Don't use device before ipcon is connected
 
         ' Enable tilt state callback
-        tilt.EnableTiltStateCallback()
+        t.EnableTiltStateCallback()
 
         ' Register tilt state callback to function TiltStateCB
-        AddHandler tilt.TiltState, AddressOf TiltStateCB
+        AddHandler t.TiltState, AddressOf TiltStateCB
 
         System.Console.WriteLine("Press key to exit")
         System.Console.ReadLine()
