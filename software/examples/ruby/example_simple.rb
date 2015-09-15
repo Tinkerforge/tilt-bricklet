@@ -17,15 +17,15 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current tilt state
-tilt_state = t.get_tilt_state
+state = t.get_tilt_state
 
-case tilt_state
+case state
   when BrickletTilt::TILT_STATE_CLOSED 
-    puts 'closed'
+    puts 'Tilt State: Closed'
   when BrickletTilt::TILT_STATE_OPEN
-    puts 'open'
+    puts 'Tilt State: Open'
   when BrickletTilt::TILT_STATE_CLOSED_VIBRATING
-    puts 'closed vibrating'
+    puts 'Tilt State: Closed Vibrating'
 end
 
 puts 'Press key to exit'

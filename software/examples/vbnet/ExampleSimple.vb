@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleSimple
@@ -13,19 +14,19 @@ Module ExampleSimple
         ' Don't use device before ipcon is connected
 
         ' Get current tilt state
-        Dim tiltState As Byte = t.GetTiltState()
+        Dim state As Byte = t.GetTiltState()
 
-        Select Case tiltState
+        Select Case state
             Case BrickletTilt.TILT_STATE_CLOSED
-                System.Console.WriteLine("closed")
+                Console.WriteLine("Tilt State: Closed")
             Case BrickletTilt.TILT_STATE_OPEN
-                System.Console.WriteLine("open")
+                Console.WriteLine("Tilt State: Open")
             Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
-                System.Console.WriteLine("closed vibrating")
+                Console.WriteLine("Tilt State: Closed Vibrating")
         End Select
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

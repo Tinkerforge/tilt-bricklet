@@ -14,21 +14,21 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current tilt state
-my $tilt_state = $t->get_tilt_state();
+my $state = $t->get_tilt_state();
 
-if ($tilt_state == $t->TILT_STATE_CLOSED)
+if ($state == $t->TILT_STATE_CLOSED)
 {
-    print "closed\n";
+    print "Tilt State: Closed\n";
 }
-elsif ($tilt_state == $t->TILT_STATE_OPEN)
+elsif ($state == $t->TILT_STATE_OPEN)
 {
-    print "open\n";
+    print "Tilt State: Open\n";
 }
-elsif ($tilt_state == $t->TILT_STATE_CLOSED_VIBRATING)
+elsif ($state == $t->TILT_STATE_CLOSED_VIBRATING)
 {
-    print "closed vibrating\n";
+    print "Tilt State: Closed Vibrating\n";
 }
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

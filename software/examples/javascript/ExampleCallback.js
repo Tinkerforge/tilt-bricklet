@@ -2,45 +2,46 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'fgfds'; // Change to your UID
+var UID = 'XYZ'; // Change to your UID
 
 var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-var tilt = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
+var t = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
-    function(error) {
-        console.log('Error: '+error);
+    function (error) {
+        console.log('Error: ' + error);
     }
 ); // Connect to brickd
 // Don't use device before ipcon is connected
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-    function(connectReason) {
+    function (connectReason) {
         // Enable tilt state callback
-        tilt.enableTiltStateCallback();
+        t.enableTiltStateCallback();
     }
 );
 
 // Register tilt state callback
-tilt.on(Tinkerforge.BrickletTilt.CALLBACK_TILT_STATE,
-    function(tiltState) {
-        switch(tiltState) {
+t.on(Tinkerforge.BrickletTilt.CALLBACK_TILT_STATE,
+    // Callback function for tilt state callback
+    function (state) {
+        switch(state) {
         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
-            console.log('Closed');
+            console.log('Tilt State: Closed');
             break;
         case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
-            console.log('Open');
+            console.log('Tilt State: Open');
             break;
         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
-            console.log('Closed vibrating');
+            console.log('Tilt State: Closed Vibrating');
             break;
         }
     }
 );
 
-console.log("Press any key to exit ...");
+console.log('Press key to exit');
 process.stdin.on('data',
-    function(data) {
+    function (data) {
         ipcon.disconnect();
         process.exit(0);
     }

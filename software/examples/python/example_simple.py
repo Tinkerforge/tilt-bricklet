@@ -16,14 +16,14 @@ if __name__ == "__main__":
     # Don't use device before ipcon is connected
 
     # Get current tilt state
-    tilt_state = t.get_tilt_state()
+    state = t.get_tilt_state()
 
-    if tilt_state == Tilt.TILT_STATE_CLOSED:
-        print('closed')
-    elif tilt_state == Tilt.TILT_STATE_OPEN:
-        print('open')
-    elif tilt_state == Tilt.TILT_STATE_CLOSED_VIBRATING:
-        print('closed vibrating')
+    if state == t.TILT_STATE_CLOSED:
+        print("Tilt State: Closed")
+    elif state == t.TILT_STATE_OPEN:
+        print("Tilt State: Open")
+    elif state == t.TILT_STATE_CLOSED_VIBRATING:
+        print("Tilt State: Closed Vibrating")
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

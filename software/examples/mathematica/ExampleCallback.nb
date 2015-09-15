@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6109,        147]
-NotebookOptionsPosition[      5677,        126]
-NotebookOutlinePosition[      6015,        141]
-CellTagsIndexPosition[      5972,        138]
+NotebookDataLength[      6074,        148]
+NotebookOptionsPosition[      5648,        127]
+NotebookOutlinePosition[      5980,        142]
+CellTagsIndexPosition[      5937,        139]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,78 +26,78 @@ Cell[BoxData[{
    3.600685362498796*^9}],
 
 Cell[BoxData[{
- RowBox[{"host", "=", "\"\<localhost\>\""}], "\[IndentingNewLine]", 
- RowBox[{"port", "=", "4223"}], "\[IndentingNewLine]", 
+ RowBox[{"host", "=", "\"\<localhost\>\""}], "\n", 
+ RowBox[{"port", "=", "4223"}], "\n", 
  RowBox[{
-  RowBox[{"uid", "=", "\"\<gfdd\>\""}], 
-  RowBox[{"(*", " ", 
-   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], " ", "*)"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"uid", "=", "\"\<XYZ\>\""}], 
+  RowBox[{"(*", 
+   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], "*)"}], "\n", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
    "Create", " ", "IPConnection", " ", "and", " ", "device", " ", "object"}], 
-   " ", "*)"}]}], "\[IndentingNewLine]", 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{"ipcon", "=", 
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"t", "=", 
   RowBox[{"NETNew", "[", 
    RowBox[{"\"\<Tinkerforge.BrickletTilt\>\"", ",", "uid", ",", "ipcon"}], 
-   "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\n", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
-    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\n", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Enable", " ", "tilt", " ", "state", " ", "callback"}], " ", 
-   "*)"}]}], "\n", 
+    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Enable", " ", "tilt", " ", "state", " ", "callback"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"t", "@", 
-   RowBox[{"EnableTiltStateCallback", "[", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"EnableTiltStateCallback", "[", "]"}]}], "\n", 
   "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
-   "CCallback", " ", "function", " ", "for", " ", "tilt", " ", "state", " ", 
-    "callback"}], " ", "*)"}]}], "\n", 
+   "Callback", " ", "function", " ", "for", " ", "tilt", " ", "state", " ", 
+    "callback"}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"TiltStateCB", "[", 
-    RowBox[{"sender_", ",", "tiltState_"}], "]"}], ":=", 
-   "\[IndentingNewLine]", 
+    RowBox[{"sender_", ",", "state_"}], "]"}], ":=", "\[IndentingNewLine]", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"tiltState", "==", "BrickletTilt`TILTUSTATEUCLOSED"}], ",", 
-        RowBox[{"Print", "[", "\"\<closed\>\"", "]"}]}], "]"}], ";", 
-      "\[IndentingNewLine]", 
+        RowBox[{"state", "\[Equal]", "BrickletTilt`TILTUSTATEUCLOSED"}], ",", 
+        
+        RowBox[{"Print", "[", "\"\<Tilt State: Closed\>\"", "]"}]}], "]"}], 
+      ";", "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"tiltState", "==", "BrickletTilt`TILTUSTATEUOPEN"}], ",", 
-        RowBox[{"Print", "[", "\"\<open\>\"", "]"}]}], "]"}], ";", 
-      "\[IndentingNewLine]", 
+        RowBox[{"state", "\[Equal]", "BrickletTilt`TILTUSTATEUOPEN"}], ",", 
+        RowBox[{"Print", "[", "\"\<Tilt State: Open\>\"", "]"}]}], "]"}], ";",
+       "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{
-        "tiltState", "==", "BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING"}], ",", 
-        
-        RowBox[{"Print", "[", "\"\<closed vibrating\>\"", "]"}]}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+        "state", "\[Equal]", "BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING"}], 
+        ",", 
+        RowBox[{"Print", "[", "\"\<Tilt State: Closed Vibrating\>\"", "]"}]}],
+        "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
     RowBox[{"t", "@", "TiltState"}], ",", "TiltStateCB"}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Clean", " ", "up"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], "\n", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Clean", " ", "up"}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{"ipcon", "@", 
-  RowBox[{"Disconnect", "[", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"ReleaseNETObject", "[", "t", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"Disconnect", "[", "]"}]}], "\n", 
+ RowBox[{"ReleaseNETObject", "[", "t", "]"}], "\n", 
  RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]}], "Input",
  CellChangeTimes->{{3.600075175574196*^9, 3.600075177574486*^9}, {
    3.600075518821967*^9, 3.60007554243471*^9}, {3.600075580562348*^9, 
@@ -122,11 +122,12 @@ Cell[BoxData[{
    3.6006086083315887`*^9, 3.600608696478737*^9}, {3.600608732817322*^9, 
    3.600608760452553*^9}, {3.600608824736239*^9, 3.600608825481593*^9}, 
    3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
-   3.600769913888022*^9, 3.6007700203406982`*^9}}]
+   3.600769913888022*^9, 3.6007700203406982`*^9}, {3.651320987260686*^9, 
+   3.651321042284532*^9}, {3.651321265942689*^9, 3.651321279700605*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{334, Automatic}, {54, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{333, 64}, {53, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -141,7 +142,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 4618, 97, 627, "Input"]
+Cell[1055, 27, 4589, 98, 627, "Input"]
 }
 ]
 *)

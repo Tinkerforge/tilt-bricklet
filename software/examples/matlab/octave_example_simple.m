@@ -3,32 +3,33 @@ function octave_example_simple()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "fgfds"; % Change to your UID
+    UID = "XYZ"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
-    tilt = java_new("com.tinkerforge.BrickletTilt", UID, ipcon); % Create device object
+    t = java_new("com.tinkerforge.BrickletTilt", UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    state = short2int(tilt.getTiltState());
+    % Get current tilt state
+    state = java2int(t.getTiltState());
 
     if state == 0
-        fprintf("Closed\n");
+        fprintf("Tilt State: Closed\n");
     elseif state == 1
-        fprintf("Open\n");
+        fprintf("Tilt State: Open\n");
     elseif state == 2
-        fprintf("Closed Vibrating\n");
+        fprintf("Tilt State: Closed Vibrating\n");
     end
 
-    input("Press any key to exit...\n", "s");
+    input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 
-function int = short2int(short)
+function int = java2int(value)
     if compare_versions(version(), "3.8", "<=")
-        int = short.intValue();
+        int = value.intValue();
     else
-        int = short;
+        int = value;
     end
 end

@@ -6,8 +6,8 @@ public class ExampleCallback {
 	private static final int PORT = 4223;
 	private static final String UID = "XYZ"; // Change to your UID
 
-	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
-	//       might normally want to catch are described in the documentation
+	// Note: To make the example code cleaner we do not handle exceptions. Exceptions
+	//       you might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletTilt t = new BrickletTilt(UID, ipcon); // Create device object
@@ -18,13 +18,19 @@ public class ExampleCallback {
 		// Enable tilt state callback
 		t.enableTiltStateCallback();
 
-		// Add and implement tiltState listener (called if tilt state changes)
+		// Add tilt state listener
 		t.addTiltStateListener(new BrickletTilt.TiltStateListener() {
-			public void tiltState(short tiltState) {
-				switch(tiltState) {
-					case BrickletTilt.TILT_STATE_CLOSED: System.out.println("closed"); break;
-					case BrickletTilt.TILT_STATE_OPEN: System.out.println("open"); break;
-					case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.out.println("closed vibrating"); break;
+			public void tiltState(short state) {
+				switch(state) {
+				case BrickletTilt.TILT_STATE_CLOSED:
+					System.out.println("Tilt State: Closed");
+					break;
+				case BrickletTilt.TILT_STATE_OPEN:
+					System.out.println("Tilt State: Open");
+					break;
+				case BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+					System.out.println("Tilt State: Closed Vibrating");
+					break;
 				}
 			}
 		});

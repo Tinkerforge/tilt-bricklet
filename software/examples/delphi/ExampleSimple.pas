@@ -24,7 +24,7 @@ var
   e: TExample;
 
 procedure TExample.Execute;
-var tiltState: byte;
+var state: byte;
 begin
   { Create IP connection }
   ipcon := TIPConnection.Create;
@@ -37,20 +37,20 @@ begin
   { Don't use device before ipcon is connected }
 
   { Get current tilt state }
-  tiltState := t.GetTiltState;
+  state := t.GetTiltState;
 
-  case tiltState of
+  case state of
     BRICKLET_TILT_TILT_STATE_CLOSED:
     begin
-      WriteLn('closed');
+      WriteLn('Tilt State: Closed');
     end;
     BRICKLET_TILT_TILT_STATE_OPEN:
     begin
-      WriteLn('open');
+      WriteLn('Tilt State: Open');
     end;
     BRICKLET_TILT_TILT_STATE_CLOSED_VIBRATING:
     begin
-      WriteLn('closed vibrating');
+      WriteLn('Tilt State: Closed Vibrating');
     end;
   end;
 

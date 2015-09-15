@@ -3,29 +3,29 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="gfdd"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
 t=NETNew["Tinkerforge.BrickletTilt",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Enable tilt state callback *)
+(*Enable tilt state callback*)
 t@EnableTiltStateCallback[]
 
-(* CCallback function for tilt state callback *)
-TiltStateCB[sender_,tiltState_]:=
+(*Callback function for tilt state callback*)
+TiltStateCB[sender_,state_]:=
  Module[{},
-  If[tiltState==BrickletTilt`TILTUSTATEUCLOSED,Print["closed"]];
-  If[tiltState==BrickletTilt`TILTUSTATEUOPEN,Print["open"]];
-  If[tiltState==BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING,Print["closed vibrating"]]
+  If[state==BrickletTilt`TILTUSTATEUCLOSED,Print["Tilt State: Closed"]];
+  If[state==BrickletTilt`TILTUSTATEUOPEN,Print["Tilt State: Open"]];
+  If[state==BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING,Print["Tilt State: Closed Vibrating"]]
  ]
 
 AddEventHandler[t@TiltState,TiltStateCB]
 
 Input["Click OK to exit"]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
 ReleaseNETObject[t]
 ReleaseNETObject[ipcon]

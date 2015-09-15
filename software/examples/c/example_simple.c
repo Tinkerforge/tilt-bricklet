@@ -24,16 +24,22 @@ int main(void) {
 	// Don't use device before ipcon is connected
 
 	// Get current tilt state
-	uint8_t tilt_state;
-	if(tilt_get_tilt_state(&t, &tilt_state) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
-		exit(1);
+	uint8_t state;
+	if(tilt_get_tilt_state(&t, &state) < 0) {
+		fprintf(stderr, "Could not get tilt state, probably timeout\n");
+		return 1;
 	}
 
-	switch(tilt_state) {
-	case TILT_TILT_STATE_CLOSED:           printf("closed\n"); break;
-	case TILT_TILT_STATE_OPEN:             printf("open\n"); break;
-	case TILT_TILT_STATE_CLOSED_VIBRATING: printf("closed vibrating\n"); break;
+	switch(state) {
+	case TILT_TILT_STATE_CLOSED:
+		printf("Tilt State: Closed\n");
+		break;
+	case TILT_TILT_STATE_OPEN:
+		printf("Tilt State: Open\n");
+		break;
+	case TILT_TILT_STATE_CLOSED_VIBRATING:
+		printf("Tilt State: Closed Vibrating\n");
+		break;
 	}
 
 	printf("Press key to exit\n");

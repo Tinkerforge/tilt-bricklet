@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleCallback
@@ -5,15 +6,15 @@ Module ExampleCallback
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    ' Callback function for tilt state callback
-    Sub TiltStateCB(ByVal sender As BrickletTilt, ByVal tiltState As Byte)
-        Select Case tiltState
+    ' Callback subroutine for tilt state callback
+    Sub TiltStateCB(ByVal sender As BrickletTilt, ByVal state As Byte)
+        Select Case state
             Case BrickletTilt.TILT_STATE_CLOSED
-                System.Console.WriteLine("closed")
+                Console.WriteLine("Tilt State: Closed")
             Case BrickletTilt.TILT_STATE_OPEN
-                System.Console.WriteLine("open")
+                Console.WriteLine("Tilt State: Open")
             Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
-                System.Console.WriteLine("closed vibrating")
+                Console.WriteLine("Tilt State: Closed Vibrating")
         End Select
     End Sub
 
@@ -27,11 +28,11 @@ Module ExampleCallback
         ' Enable tilt state callback
         t.EnableTiltStateCallback()
 
-        ' Register tilt state callback to function TiltStateCB
+        ' Register tilt state callback to subroutine TiltStateCB
         AddHandler t.TiltState, AddressOf TiltStateCB
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

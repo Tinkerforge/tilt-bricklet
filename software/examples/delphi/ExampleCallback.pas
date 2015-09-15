@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     t: TBrickletTilt;
   public
-    procedure TiltStateCB(sender: TBrickletTilt; const tiltState: byte);
+    procedure TiltStateCB(sender: TBrickletTilt; const state: byte);
     procedure Execute;
   end;
 
@@ -24,21 +24,21 @@ const
 var
   e: TExample;
 
-{ Callback function for tilt state callback }
-procedure TExample.TiltStateCB(sender: TBrickletTilt; const tiltState: byte);
+{ Callback procedure for tilt state callback }
+procedure TExample.TiltStateCB(sender: TBrickletTilt; const state: byte);
 begin
-  case tiltState of
+  case state of
     BRICKLET_TILT_TILT_STATE_CLOSED:
     begin
-      WriteLn('closed');
+      WriteLn('Tilt State: Closed');
     end;
     BRICKLET_TILT_TILT_STATE_OPEN:
     begin
-      WriteLn('open');
+      WriteLn('Tilt State: Open');
     end;
     BRICKLET_TILT_TILT_STATE_CLOSED_VIBRATING:
     begin
-      WriteLn('closed vibrating');
+      WriteLn('Tilt State: Closed Vibrating');
     end;
   end;
 end;
@@ -55,7 +55,7 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Enable tilt state callack }
+  { Enable tilt state callback }
   t.EnableTiltStateCallback;
 
   { Register tilt state callback to procedure TiltStateCB }

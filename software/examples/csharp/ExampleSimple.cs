@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -15,17 +16,23 @@ class Example
 		// Don't use device before ipcon is connected
 
 		// Get current tilt state
-		byte tiltState = t.GetTiltState();
+		byte state = t.GetTiltState();
 
-		switch(tiltState)
+		switch(state)
 		{
-    		case BrickletTilt.TILT_STATE_CLOSED: System.Console.WriteLine("closed"); break;
-    		case BrickletTilt.TILT_STATE_OPEN: System.Console.WriteLine("open"); break;
-    		case BrickletTilt.TILT_STATE_CLOSED_VIBRATING: System.Console.WriteLine("closed vibrating"); break;
+		case BrickletTilt.TILT_STATE_CLOSED:
+			Console.WriteLine("Tilt State: Closed");
+			break;
+		case BrickletTilt.TILT_STATE_OPEN:
+			Console.WriteLine("Tilt State: Open");
+			break;
+		case BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+			Console.WriteLine("Tilt State: Closed Vibrating");
+			break;
 		}
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

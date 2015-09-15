@@ -20,14 +20,14 @@ ipcon.connect HOST, PORT # Connect to brickd
 t.enable_tilt_state_callback
 
 # Register tilt state callback
-t.register_callback(BrickletTilt::CALLBACK_TILT_STATE) do |tilt_state|
-  case tilt_state
+t.register_callback(BrickletTilt::CALLBACK_TILT_STATE) do |state|
+  case state
     when BrickletTilt::TILT_STATE_CLOSED 
-      puts 'closed'
+      puts 'Tilt State: Closed'
     when BrickletTilt::TILT_STATE_OPEN
-      puts 'open'
+      puts 'Tilt State: Open'
     when BrickletTilt::TILT_STATE_CLOSED_VIBRATING
-      puts 'closed vibrating'
+      puts 'Tilt State: Closed Vibrating'
   end
 end
 

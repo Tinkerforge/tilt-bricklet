@@ -31,32 +31,34 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var tilt = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
+                var t = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+'\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
+                    function (connectReason) {
                         // Enable tilt state callback
-                        tilt.enableTiltStateCallback();
+                        t.enableTiltStateCallback();
                     }
                 );
+
                 // Register tilt state callback
-                tilt.on(Tinkerforge.BrickletTilt.CALLBACK_TILT_STATE,
-                    function(tiltState) {
-                        switch(tiltState) {
+                t.on(Tinkerforge.BrickletTilt.CALLBACK_TILT_STATE,
+                    // Callback function for tilt state callback
+                    function (state) {
+                        switch(state) {
                         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
-                            textArea.value += 'Closed\n';
+                            textArea.value += 'Tilt State: Closed\n';
                             break;
                         case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
-                            textArea.value += 'Open\n';
+                            textArea.value += 'Tilt State: Open\n';
                             break;
                         case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
-                            textArea.value += 'Closed vibrating\n';
+                            textArea.value += 'Tilt State: Closed Vibrating\n';
                             break;
                         }
                         textArea.scrollTop = textArea.scrollHeight;

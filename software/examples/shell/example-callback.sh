@@ -1,11 +1,14 @@
 #!/bin/sh
-# connects to localhost:4223 by default, use --host and --port to change it
+# Connects to localhost:4223 by default, use --host and --port to change this
 
-# change to your UID
-uid=XYZ
+uid=XYZ # Change to your UID
 
 # Enable tilt state callback
 tinkerforge call tilt-bricklet $uid enable-tilt-state-callback
 
-# handle incoming tilt state callbacks
-tinkerforge dispatch tilt-bricklet $uid tilt-state
+# Handle incoming tilt state callbacks
+tinkerforge dispatch tilt-bricklet $uid tilt-state &
+
+echo "Press key to exit"; read dummy
+
+kill -- -$$ # Stop callback dispatch in background

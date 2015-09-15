@@ -31,33 +31,33 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var tilt = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
+                var t = new Tinkerforge.BrickletTilt(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+'\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
+                    function (connectReason) {
                         // Get current tilt state
-                        tilt.getTiltState(
-                            function(tiltState) {
-                                switch(tiltState) {
+                        t.getTiltState(
+                            function (state) {
+                                switch(state) {
                                 case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
-                                    textArea.value += 'Closed';
+                                    textArea.value += 'Tilt State: Closed';
                                     break;
                                 case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
-                                    textArea.value += 'Open';
+                                    textArea.value += 'Tilt State: Open';
                                     break;
                                 case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
-                                    textArea.value += 'Closed vibrating';
+                                    textArea.value += 'Tilt State: Closed Vibrating';
                                     break;
                                 }
                             },
-                            function(error) {
-                                textArea.value += 'Error: '+error+'\n';
+                            function (error) {
+                                textArea.value += 'Error: ' + error + '\n';
                             }
                         );
                     }

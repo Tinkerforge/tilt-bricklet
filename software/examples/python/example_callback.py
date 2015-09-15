@@ -9,13 +9,13 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_tilt import BrickletTilt
 
 # Callback function for tilt state callback
-def cb_tilt_state(tilt_state):
-    if tilt_state == Tilt.TILT_STATE_CLOSED:
-        print('closed')
-    elif tilt_state == Tilt.TILT_STATE_OPEN:
-        print('open')
-    elif tilt_state == Tilt.TILT_STATE_CLOSED_VIBRATING:
-        print('closed vibrating')
+def cb_tilt_state(state):
+    if state == BrickletTilt.TILT_STATE_CLOSED:
+        print("Tilt State: closed")
+    elif state == BrickletTilt.TILT_STATE_OPEN:
+        print("Tilt State: Open")
+    elif state == BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+        print("Tilt State: Closed Vibrating")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -30,5 +30,5 @@ if __name__ == "__main__":
     # Register tilt state callback to function cb_tilt_state
     t.register_callback(t.CALLBACK_TILT_STATE, cb_tilt_state)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()
