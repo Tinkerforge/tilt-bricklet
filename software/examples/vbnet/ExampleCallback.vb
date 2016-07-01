@@ -4,7 +4,7 @@ Imports Tinkerforge
 Module ExampleCallback
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your Tilt Bricklet
 
     ' Callback subroutine for tilt state callback
     Sub TiltStateCB(ByVal sender As BrickletTilt, ByVal state As Byte)

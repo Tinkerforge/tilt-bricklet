@@ -5,7 +5,7 @@ use Tinkerforge::BrickletTilt;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'XYZ'; # Change to your UID
+use constant UID => 'XYZ'; # Change XYZ to the UID of your Tilt Bricklet
 
 # Callback subroutine for tilt state callback
 sub cb_tilt_state

@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your Tilt Bricklet
 
 // Callback function for tilt state callback
 void cb_tilt_state(uint8_t state, void *user_data) {
