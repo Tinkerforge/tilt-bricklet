@@ -36,7 +36,7 @@ class Example
 		t.EnableTiltStateCallback();
 
 		// Register tilt state callback to function TiltStateCB
-		t.TiltState += TiltStateCB;
+		t.TiltStateCallback += TiltStateCB;
 
 		Console.WriteLine("Press enter to exit");
 		Console.ReadLine();
