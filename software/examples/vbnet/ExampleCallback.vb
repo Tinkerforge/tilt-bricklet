@@ -29,7 +29,7 @@ Module ExampleCallback
         t.EnableTiltStateCallback()
 
         ' Register tilt state callback to subroutine TiltStateCB
-        AddHandler t.TiltState, AddressOf TiltStateCB
+        AddHandler t.TiltStateCallback, AddressOf TiltStateCB
 
         Console.WriteLine("Press key to exit")
         Console.ReadLine()

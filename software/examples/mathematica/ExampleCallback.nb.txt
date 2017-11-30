@@ -21,7 +21,7 @@ TiltStateCB[sender_,state_]:=
   If[state==BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING,Print["Tilt State: Closed Vibrating"]]
  ]
 
-AddEventHandler[t@TiltState,TiltStateCB]
+AddEventHandler[t@TiltStateCallback,TiltStateCB]
 
 Input["Click OK to exit"]
 
