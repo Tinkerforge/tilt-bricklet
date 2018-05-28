@@ -21,13 +21,12 @@ t.enable_tilt_state_callback
 
 # Register tilt state callback
 t.register_callback(BrickletTilt::CALLBACK_TILT_STATE) do |state|
-  case state
-    when BrickletTilt::TILT_STATE_CLOSED 
-      puts 'Tilt State: Closed'
-    when BrickletTilt::TILT_STATE_OPEN
-      puts 'Tilt State: Open'
-    when BrickletTilt::TILT_STATE_CLOSED_VIBRATING
-      puts 'Tilt State: Closed Vibrating'
+  if state == BrickletTilt::TILT_STATE_CLOSED
+    puts "Tilt State: Closed"
+  elsif state == BrickletTilt::TILT_STATE_OPEN
+    puts "Tilt State: Open"
+  elsif state == BrickletTilt::TILT_STATE_CLOSED_VIBRATING
+    puts "Tilt State: Closed Vibrating"
   end
 end
 

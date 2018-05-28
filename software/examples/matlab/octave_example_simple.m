@@ -12,13 +12,13 @@ function octave_example_simple()
     % Don't use device before ipcon is connected
 
     % Get current tilt state
-    state = java2int(t.getTiltState());
+    state = t.getTiltState();
 
-    if state == 0
+    if java2int(state) == 0
         fprintf("Tilt State: Closed\n");
-    elseif state == 1
+    elseif java2int(state) == 1
         fprintf("Tilt State: Open\n");
-    elseif state == 2
+    elseif java2int(state) == 2
         fprintf("Tilt State: Closed Vibrating\n");
     end
 

@@ -15,11 +15,11 @@ function matlab_example_simple()
     % Get current tilt state
     state = t.getTiltState();
 
-    if state == t.TILT_STATE_CLOSED
+    if state == BrickletTilt.TILT_STATE_CLOSED
         fprintf('Tilt State: Closed\n');
-    elseif state == t.TILT_STATE_OPEN
+    elseif state == BrickletTilt.TILT_STATE_OPEN
         fprintf('Tilt State: Open\n');
-    elseif state == t.TILT_STATE_CLOSED_VIBRATING
+    elseif state == BrickletTilt.TILT_STATE_CLOSED_VIBRATING
         fprintf('Tilt State: Closed Vibrating\n');
     end
 

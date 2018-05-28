@@ -20,16 +20,12 @@ public class ExampleSimple {
 		// Get current tilt state
 		short state = t.getTiltState(); // Can throw com.tinkerforge.TimeoutException
 
-		switch(state) {
-		case BrickletTilt.TILT_STATE_CLOSED:
+		if(state == BrickletTilt.TILT_STATE_CLOSED) {
 			System.out.println("Tilt State: Closed");
-			break;
-		case BrickletTilt.TILT_STATE_OPEN:
+		} else if(state == BrickletTilt.TILT_STATE_OPEN) {
 			System.out.println("Tilt State: Open");
-			break;
-		case BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+		} else if(state == BrickletTilt.TILT_STATE_CLOSED_VIBRATING) {
 			System.out.println("Tilt State: Closed Vibrating");
-			break;
 		}
 
 		System.out.println("Press key to exit"); System.in.read();

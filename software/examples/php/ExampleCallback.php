@@ -13,16 +13,12 @@ const UID = 'XYZ'; // Change XYZ to the UID of your Tilt Bricklet
 // Callback function for tilt state callback
 function cb_tiltState($state)
 {
-    switch($state) {
-    case BrickletTilt::TILT_STATE_CLOSED:
+    if ($state == BrickletTilt::TILT_STATE_CLOSED) {
         echo "Tilt State: Closed\n";
-        break;
-    case BrickletTilt::TILT_STATE_OPEN:
+    } elseif ($state == BrickletTilt::TILT_STATE_OPEN) {
         echo "Tilt State: Open\n";
-        break;
-    case BrickletTilt::TILT_STATE_CLOSED_VIBRATING:
+    } elseif ($state == BrickletTilt::TILT_STATE_CLOSED_VIBRATING) {
         echo "Tilt State: Closed Vibrating\n";
-        break;
     }
 }
 

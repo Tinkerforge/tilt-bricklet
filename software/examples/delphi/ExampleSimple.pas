@@ -39,19 +39,14 @@ begin
   { Get current tilt state }
   state := t.GetTiltState;
 
-  case state of
-    BRICKLET_TILT_TILT_STATE_CLOSED:
-    begin
-      WriteLn('Tilt State: Closed');
-    end;
-    BRICKLET_TILT_TILT_STATE_OPEN:
-    begin
-      WriteLn('Tilt State: Open');
-    end;
-    BRICKLET_TILT_TILT_STATE_CLOSED_VIBRATING:
-    begin
-      WriteLn('Tilt State: Closed Vibrating');
-    end;
+  if (state = BRICKLET_TILT_TILT_STATE_CLOSED) then begin
+    WriteLn('Tilt State: Closed');
+  end
+  else if (state = BRICKLET_TILT_TILT_STATE_OPEN) then begin
+    WriteLn('Tilt State: Open');
+  end
+  else if (state = BRICKLET_TILT_TILT_STATE_CLOSED_VIBRATING) then begin
+    WriteLn('Tilt State: Closed Vibrating');
   end;
 
   WriteLn('Press key to exit');

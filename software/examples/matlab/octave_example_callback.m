@@ -23,13 +23,11 @@ end
 
 % Callback function for tilt state callback
 function cb_tilt_state(e)
-    state = java2int(e.state);
-
-    if state == 0
+    if java2int(e.state) == 0
         fprintf("Tilt State: Closed\n");
-    elseif state == 1
+    elseif java2int(e.state) == 1
         fprintf("Tilt State: Open\n");
-    elseif state == 2
+    elseif java2int(e.state) == 2
         fprintf("Tilt State: Closed Vibrating\n");
     end
 end

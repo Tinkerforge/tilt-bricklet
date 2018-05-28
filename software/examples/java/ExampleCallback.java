@@ -23,16 +23,12 @@ public class ExampleCallback {
 		// Add tilt state listener
 		t.addTiltStateListener(new BrickletTilt.TiltStateListener() {
 			public void tiltState(short state) {
-				switch(state) {
-				case BrickletTilt.TILT_STATE_CLOSED:
+				if(state == BrickletTilt.TILT_STATE_CLOSED) {
 					System.out.println("Tilt State: Closed");
-					break;
-				case BrickletTilt.TILT_STATE_OPEN:
+				} else if(state == BrickletTilt.TILT_STATE_OPEN) {
 					System.out.println("Tilt State: Open");
-					break;
-				case BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+				} else if(state == BrickletTilt.TILT_STATE_CLOSED_VIBRATING) {
 					System.out.println("Tilt State: Closed Vibrating");
-					break;
 				}
 			}
 		});

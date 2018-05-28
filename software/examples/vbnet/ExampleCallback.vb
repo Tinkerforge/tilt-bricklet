@@ -8,14 +8,13 @@ Module ExampleCallback
 
     ' Callback subroutine for tilt state callback
     Sub TiltStateCB(ByVal sender As BrickletTilt, ByVal state As Byte)
-        Select Case state
-            Case BrickletTilt.TILT_STATE_CLOSED
-                Console.WriteLine("Tilt State: Closed")
-            Case BrickletTilt.TILT_STATE_OPEN
-                Console.WriteLine("Tilt State: Open")
-            Case BrickletTilt.TILT_STATE_CLOSED_VIBRATING
-                Console.WriteLine("Tilt State: Closed Vibrating")
-        End Select
+        If state = BrickletTilt.TILT_STATE_CLOSED Then
+            Console.WriteLine("Tilt State: Closed")
+        Else If state = BrickletTilt.TILT_STATE_OPEN Then
+            Console.WriteLine("Tilt State: Open")
+        Else If state = BrickletTilt.TILT_STATE_CLOSED_VIBRATING Then
+            Console.WriteLine("Tilt State: Closed Vibrating")
+        End If
     End Sub
 
     Sub Main()

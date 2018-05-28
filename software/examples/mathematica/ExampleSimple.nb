@@ -22,9 +22,9 @@ Notebook[{
    RowBox[{"state", "=", "t", "@", RowBox[{"GetTiltState", "[", "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "BrickletTilt`TILTUSTATEUCLOSED"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Closed\>\"", "]"}]}], "]"}],
-   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "BrickletTilt`TILTUSTATEUOPEN"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Open\>\"", "]"}]}], "]"}],
-   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Closed Vibrating\>\"", "]"}]}], "]"}],
+   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "Tinkerforge`BrickletTilt`TILTUSTATEUCLOSED"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Closed\>\"", "]"}]}], "]"}],
+   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "Tinkerforge`BrickletTilt`TILTUSTATEUOPEN"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Open\>\"", "]"}]}], "]"}],
+   RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "Tinkerforge`BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING"}], ",", RowBox[{"Print", "[", "\"\<Tilt State: Closed Vibrating\>\"", "]"}]}], "]"}],
    RowBox[{"
 "}],
    RowBox[{"(*", "Clean up", "*)"}],

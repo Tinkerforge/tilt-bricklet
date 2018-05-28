@@ -30,16 +30,12 @@ int main(void) {
 		return 1;
 	}
 
-	switch(state) {
-	case TILT_TILT_STATE_CLOSED:
+	if(state == TILT_TILT_STATE_CLOSED) {
 		printf("Tilt State: Closed\n");
-		break;
-	case TILT_TILT_STATE_OPEN:
+	} else if(state == TILT_TILT_STATE_OPEN) {
 		printf("Tilt State: Open\n");
-		break;
-	case TILT_TILT_STATE_CLOSED_VIBRATING:
+	} else if(state == TILT_TILT_STATE_CLOSED_VIBRATING) {
 		printf("Tilt State: Closed Vibrating\n");
-		break;
 	}
 
 	printf("Press key to exit\n");

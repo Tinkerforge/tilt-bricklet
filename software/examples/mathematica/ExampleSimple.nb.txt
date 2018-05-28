@@ -13,9 +13,9 @@ ipcon@Connect[host,port]
 (*Get current tilt state*)
 state=t@GetTiltState[]
 
-If[state==BrickletTilt`TILTUSTATEUCLOSED,Print["Tilt State: Closed"]]
-If[state==BrickletTilt`TILTUSTATEUOPEN,Print["Tilt State: Open"]]
-If[state==BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING,Print["Tilt State: Closed Vibrating"]]
+If[state==Tinkerforge`BrickletTilt`TILTUSTATEUCLOSED,Print["Tilt State: Closed"]]
+If[state==Tinkerforge`BrickletTilt`TILTUSTATEUOPEN,Print["Tilt State: Open"]]
+If[state==Tinkerforge`BrickletTilt`TILTUSTATEUCLOSEDUVIBRATING,Print["Tilt State: Closed Vibrating"]]
 
 (*Clean up*)
 ipcon@Disconnect[]

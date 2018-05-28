@@ -25,16 +25,14 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
 t.on(Tinkerforge.BrickletTilt.CALLBACK_TILT_STATE,
     // Callback function for tilt state callback
     function (state) {
-        switch(state) {
-        case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED:
+        if(state === Tinkerforge.BrickletTilt.TILT_STATE_CLOSED) {
             console.log('Tilt State: Closed');
-            break;
-        case Tinkerforge.BrickletTilt.TILT_STATE_OPEN:
+        }
+        else if(state === Tinkerforge.BrickletTilt.TILT_STATE_OPEN) {
             console.log('Tilt State: Open');
-            break;
-        case Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
+        }
+        else if(state === Tinkerforge.BrickletTilt.TILT_STATE_CLOSED_VIBRATING) {
             console.log('Tilt State: Closed Vibrating');
-            break;
         }
     }
 );

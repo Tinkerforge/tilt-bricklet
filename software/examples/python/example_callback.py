@@ -11,7 +11,7 @@ from tinkerforge.bricklet_tilt import BrickletTilt
 # Callback function for tilt state callback
 def cb_tilt_state(state):
     if state == BrickletTilt.TILT_STATE_CLOSED:
-        print("Tilt State: closed")
+        print("Tilt State: Closed")
     elif state == BrickletTilt.TILT_STATE_OPEN:
         print("Tilt State: Open")
     elif state == BrickletTilt.TILT_STATE_CLOSED_VIBRATING:
