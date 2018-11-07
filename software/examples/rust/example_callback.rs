@@ -15,10 +15,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Enable tilt state callback
     t.enable_tilt_state_callback();
 
-    // Create receiver for tilt state events.
-    let tilt_state_receiver = t.get_tilt_state_receiver();
+    let tilt_state_receiver = t.get_tilt_state_callback_receiver();
 
-    // Spawn thread to handle received events. This thread ends when the `t` object
+    // Spawn thread to handle received callback messages.
+    // This thread ends when the `t` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
         for tilt_state in tilt_state_receiver {
