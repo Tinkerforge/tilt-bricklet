@@ -1,31 +1,32 @@
 use std::{error::Error, io, thread};
-use tinkerforge::{ipconnection::IpConnection, tilt_bricklet::*};
+use tinkerforge::{ip_connection::IpConnection, tilt_bricklet::*};
 
-const HOST: &str = "127.0.0.1";
+const HOST: &str = "localhost";
 const PORT: u16 = 4223;
-const UID: &str = "XYZ"; // Change XYZ to the UID of your Tilt Bricklet
+const UID: &str = "XYZ"; // Change XYZ to the UID of your Tilt Bricklet.
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let ipcon = IpConnection::new(); // Create IP connection
-    let tilt_bricklet = TiltBricklet::new(UID, &ipcon); // Create device object
+    let ipcon = IpConnection::new(); // Create IP connection.
+    let t = TiltBricklet::new(UID, &ipcon); // Create device object.
 
-    ipcon.connect(HOST, PORT).recv()??; // Connect to brickd
-                                        // Don't use device before ipcon is connected
+    ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
+                                          // Don't use device before ipcon is connected.
 
     // Enable tilt state callback
-    tilt_bricklet.enable_tilt_state_callback();
+    t.enable_tilt_state_callback();
 
-    //Create listener for tilt state events.
-    let tilt_state_listener = tilt_bricklet.get_tilt_state_receiver();
-    // Spawn thread to handle received events. This thread ends when the tilt_bricklet
+    // Create receiver for tilt state events.
+    let tilt_state_receiver = t.get_tilt_state_receiver();
+
+    // Spawn thread to handle received events. This thread ends when the `t` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
-        for event in tilt_state_listener {
-            if event == TILT_BRICKLET_TILT_STATE_CLOSED {
+        for tilt_state in tilt_state_receiver {
+            if tilt_state == TILT_BRICKLET_TILT_STATE_CLOSED {
                 println!("Tilt State: Closed");
-            } else if event == TILT_BRICKLET_TILT_STATE_OPEN {
+            } else if tilt_state == TILT_BRICKLET_TILT_STATE_OPEN {
                 println!("Tilt State: Open");
-            } else if event == TILT_BRICKLET_TILT_STATE_CLOSED_VIBRATING {
+            } else if tilt_state == TILT_BRICKLET_TILT_STATE_CLOSED_VIBRATING {
                 println!("Tilt State: Closed Vibrating");
             }
         }
