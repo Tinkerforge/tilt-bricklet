@@ -3,6 +3,7 @@
 setup:
 	# Enable tilt state callback
 	publish '' to tinkerforge/request/tilt_bricklet/XYZ/enable_tilt_state_callback 
+	
 	# Handle incoming tilt state callbacks
 	subscribe to tinkerforge/callback/tilt_bricklet/XYZ/tilt_state
 	publish '{"register": true}' to tinkerforge/register/tilt_bricklet/XYZ/tilt_state # Register tilt_state callback
