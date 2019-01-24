@@ -1,0 +1,8 @@
+
+
+# Change XYZ to the UID of your Tilt Bricklet
+
+setup:
+	# Get current tilt state
+	subscribe to tinkerforge/response/tilt/XYZ/get_tilt_state
+	publish '' to tinkerforge/request/tilt_bricklet/XYZ/get_tilt_state 
