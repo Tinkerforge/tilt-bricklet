@@ -3,4 +3,4 @@
 setup:
 	# Get current tilt state
 	subscribe to tinkerforge/response/tilt_bricklet/XYZ/get_tilt_state
-	publish '' to tinkerforge/request/tilt_bricklet/XYZ/get_tilt_state 
+	publish '' to tinkerforge/request/tilt_bricklet/XYZ/get_tilt_state
