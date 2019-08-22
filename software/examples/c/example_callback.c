@@ -42,7 +42,7 @@ int main(void) {
 	// Register tilt state callback to function cb_tilt_state
 	tilt_register_callback(&t,
 	                       TILT_CALLBACK_TILT_STATE,
-	                       (void *)cb_tilt_state,
+	                       (void (*)(void))cb_tilt_state,
 	                       NULL);
 
 	printf("Press key to exit\n");
