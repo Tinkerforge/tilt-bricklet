@@ -30,5 +30,5 @@ if __name__ == "__main__":
     # Register tilt state callback to function cb_tilt_state
     t.register_callback(t.CALLBACK_TILT_STATE, cb_tilt_state)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
