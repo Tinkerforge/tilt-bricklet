@@ -13,7 +13,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                                           // Don't use device before ipcon is connected.
 
     // Enable tilt state callback
-    t.enable_tilt_state_callback();
+    t.enable_tilt_state_callback().recv()?;
 
     let tilt_state_receiver = t.get_tilt_state_callback_receiver();
 
